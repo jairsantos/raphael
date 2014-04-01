@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="pt">
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <!-- <link rel="stylesheet" href="./css/lib/jquery.mobile/jquery.mobile-1.4.2.css" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script data-main="js/main" src="lib/requirejs/require.js"></script>
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="lib/bootstrap-3.1.1-dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="lib/vakata-jstree-e22db21/dist/themes/default/style.css" />
+  </head>
+
+  <body>
+    
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#home">Trowner</a>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#home">Home</a></li>
+          <li><a href="#companies">Empresas</a></li>          
+          <li><a href="#dashboards">Dashboards</a></li>          
+          <li><a href="#">Moedas</a></li>          
+          <li><a href="#">Países</a></li>          
+          <li><a href="#">Operações</a></li>          
+        </ul>
+      </div>
+    </nav>
+
+    <div ng-view></div>
+
+  </body>
+</html>

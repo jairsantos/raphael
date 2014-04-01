@@ -1,0 +1,28 @@
+<h1>{{ title }} <small></small></h1>
+
+<!-- TODO: Teste -->
+<div id="html1">
+  <ul>
+    <li data-jstree='{"icon":"glyphicon glyphicon-tree-deciduous"}'>Root node 1
+      <ul>
+        <li>Child node 1</li>
+        <li><a href="#">Child node 2</a></li>
+      </ul>
+    </li>
+    <li data-jstree='{"opened":true,"selected":true,"icon":"glyphicon glyphicon-tree-deciduous"}'>Root
+      <ul>
+        <li data-jstree='{"disabled":true,"icon":"glyphicon glyphicon-briefcase"}'>Child</li>
+        <li data-jstree='{"icon":"glyphicon glyphicon-briefcase"}'>
+          Child</li>
+        <li data-jstree='{"icon":"glyphicon glyphicon-briefcase"}'>
+          Child
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  $('#html1').jstree();
+</script>
+
