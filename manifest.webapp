@@ -2,10 +2,10 @@
   "version": "0.1.0",
   "name": "Trowner",
   "description": "Academic work.",
-  "launch_path": "/app.html",
+  "launch_path": "raphael/app.html",
   "icons": {
     "16": "/favicon.png",
-    "128": "/img/ico/128.png"
+    "128": "raphael/img/ico/128.png"
   },
   "developer": {
     "name": "Jair Santos"
