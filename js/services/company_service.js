@@ -9,6 +9,10 @@ define(['./module', './base'], function (services) {
       $rootScope.companies = data;
     });
 
+    function reset() {
+      $rootScope.company = {};
+    }
+
     function remove(id) {
       $http.delete(api + 'companies/' + id)
       .success(function(data){
@@ -23,20 +27,31 @@ define(['./module', './base'], function (services) {
       });
     }
 
+    function update(company) {
+     $http.put(api + 'companies/' + company.id, company)
+      .success(function(data){
+        var itemIndex = indexOfById($rootScope.companies, data.id);
+        $rootScope.companies.splice(itemIndex, 1, $rootScope.company);
+      });
+    }
+
     function get(id) {
-     $http.get(api + 'companies/' + id)
+      reset();
+      $http.get(api + 'companies/' + id)
       .success(function(data){
         $rootScope.company = data;
       });
     }
 
-    function reset() {
-      $rootScope.company = {};
-    }
-
     this.rm = remove;
 
-    this.save = create;
+    this.save = function(company) {
+      if (company.id === undefined) {
+        create(company);        
+      } else {
+        update(company)
+      }
+    }
 
     this.get = get;
 

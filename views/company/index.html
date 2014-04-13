@@ -8,40 +8,65 @@
       <div class="modal-body">  
         <div class="bs-component">
           <form class="form-horizontal" id="company_form">
-            <input type="hidden" ng-model="company.id" name="companyId">
+            <input type="hidden" ng-model="company.id">
             <fieldset>
               <legend>Dados da empresa</legend>
               <div class="form-group">
                 <label for="vatin" class="col-lg-2 control-label">Vatin</label>
                 <div class="col-lg-10">
-                  <input type="text" class="form-control" ng-model="company.vatin" name="companyVatin">
+                  <input type="text" class="form-control" ng-model="company.vatin">
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="company_name" class="col-lg-2 control-label">Razão Social</label>
                 <div class="col-lg-10">
-                  <input type="text" class="form-control" ng-model="company.company_name" name="companyCompany_name">
+                  <input type="text" class="form-control" ng-model="company.company_name">
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="trade_name" class="col-lg-2 control-label">Nome Fantasia</label>
                 <div class="col-lg-10">
-                  <input type="text" class="form-control" ng-model="company.trade_name" name="companyTrade_name">
+                  <input type="text" class="form-control" ng-model="company.trade_name">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="select" class="col-lg-2 control-label">Selects</label>
+                <label for="select" class="col-lg-2 control-label">Setor</label>
                 <div class="col-lg-10">
-                  <select class="form-control" id="select">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                  <select class="form-control" ng-model="company.sector">
+                    <option value="industria">Indústria</option>
+                    <option value="servico">Serviço</option>
+                    <option value="comercio">Comercio</option>
                   </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Const. do Capital</label>
+                <div class="col-lg-10">
+                  <select class="form-control" ng-model="company.business_entity">
+                    <option value="sa">Sociedade Anônima (ON)</option>
+                    <option value="ltda">Capital Limitado</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">País</label>
+                <div class="col-lg-10">
+                  <select class="form-control" ng-model="company.country_id">
+                    <option value=1>Brasil</option>
+                    <option value=2>EUA</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Capital Social</label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" ng-model="company.capital_stock">
                 </div>
               </div>
 

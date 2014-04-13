@@ -4,7 +4,6 @@ require.config({
     "angular"          : "../lib/angular/angular",
     "angular-route"    : "../lib/angular-route/angular-route",
     "twitterbootstrap" : "../lib/bootstrap-3.1.1-dist/js/bootstrap",
-    "persistencejs"    : "../lib/persistencejs-master/lib/persistence",
     "jstree"           : "../lib/vakata-jstree-e22db21/dist/jstree",
     "domReady"         : "../lib/requirejs-domready/domReady"
   },

@@ -3,7 +3,6 @@ define([
     'angular',
     'jquery',
     'twitterbootstrap',
-    'persistencejs',
     'jstree',
     'app',
     'routes'
