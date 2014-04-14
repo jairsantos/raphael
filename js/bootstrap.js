@@ -5,6 +5,7 @@ define([
     'twitterbootstrap',
     'jstree',
     'app',
+    // 'nouislider',
     'routes'
 ], function (require, ng) {
     'use strict';

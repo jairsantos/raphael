@@ -1,5 +1,6 @@
 define([
     './home',
     './companies',
-    './dashboards'
+    './dashboards',
+    './participations'
 ], function () {});

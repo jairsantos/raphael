@@ -11,9 +11,9 @@ define(['./app'], function (app) {
             controller: 'CompaniesCtrl'
         });
 
-        $routeProvider.when('/companies/new', {
-            templateUrl: 'views/company/form.html',
-            controller: 'CompaniesCtrl'
+        $routeProvider.when('/participations', {
+            templateUrl: 'views/participation/index.html',
+            controller: 'ParticipationsCtrl'
         });
 
         $routeProvider.when('/dashboards', {

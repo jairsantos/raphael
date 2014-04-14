@@ -1,0 +1,179 @@
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Modal title</h4>
+      </div> -->
+      <div class="modal-body">  
+        <div class="bs-component">
+          <form class="form-horizontal" id="company_form">
+            <input type="hidden" ng-model="company.id">
+            <fieldset>
+              <legend>Dados da participação</legend>
+
+              <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Investidor</label>
+                <div class="col-lg-10">
+                  <select class="form-control" ng-model="company.country_id">
+                    <option value=1>Brasil</option>
+                    <option value=2>EUA</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Investido</label>
+                <div class="col-lg-10">
+                  <select class="form-control" ng-model="company.country_id">
+                    <option value=1>Brasil</option>
+                    <option value=2>EUA</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Capital Social</label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" ng-model="company.capital_stock">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2 pull-right">
+                  <input type="reset" class="btn btn-default" data-modal-hide value="Cancelar">
+                  <button type="submit" ng-click="save(company)" data-modal-hide class="btn btn-primary">Salvar</button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+<!--       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="page-header">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>Participações</h1>
+
+      <p class="lead"><small>Aqui você pode visualizar as participações, incluir, atualizar, consultar e até excluir.</small></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <label class="label label-info pull-right"><i class="glyphicon glyphicon-tag"></i>&nbsp;#ef3b17</label>
+    </div>
+  </div>    
+
+  <div class="row">
+    <div class="col-lg-6">
+      <form class="form-horizontal" id="participation_form">
+        <fieldset>
+          <!-- <legend>Dados da empresa</legend> -->
+          <div class="form-group">
+            <label for="select" class="col-lg-2 control-label">Dashboard</label>
+            <div class="col-lg-10">
+              <select class="form-control" ng-model="working_dashboard_id">
+                <option value="1">Oficial</option>
+                <option value="1">A</option>
+                <option value="2">B</option>
+                <option value="3">C</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="select" class="col-lg-2 control-label">Empresa</label>
+            <div class="col-lg-10">
+              <select class="form-control" ng-model="working_company_id" ng-change="load()">
+                <option ng-repeat="c in companies" value="{{ c.id }}">{{ c.trade_name }}</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#">Investimentos</a></li>
+        <li><a href="#">Investidores</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row investiment-panel">
+    <div class="col-lg-6">
+      <div class="input-group input-group-sm">
+        <a href="#" data-filter="#filter" class="input-group-addon btn btn-primary btn-xs">
+          <i class="glyphicon glyphicon-filter"></i>
+          <!-- <span>filtrar</span> -->
+        </a>
+        <input type="text" id="filter" ng-model="search" class="form-control " placeholder="Digite o nome da empresa">
+        <a href="#" ng-click="add()" data-modal-toggle class="input-group-addon btn btn-primary btn-xs">
+          <i class="glyphicon glyphicon-plus-sign"></i>
+          <span>adicionar</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table table-striped table-hover ">
+        <thead>
+          <tr>
+            <th class="text-center">Nv.</th>
+            <th>Nome fantasia</th>
+            <th class="text-center">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-animate="'animate'" ng-repeat="investment in investments">
+            <td class="text-center">{{ investment.level }}</td>
+            <td><a ng-click="change_working_company(investment.base_company.id)">{{ investment.base_company.trade_name }}</a> <span class="badge pull-right">{{ investment.relative_participation * 100 | number: 1 }}%</span></td>
+            <td class="text-center">
+              <a href="javascript:open();" ng-click="show(p.id)" class="btn btn-default btn-xs" data-modal-toggle><i class="glyphicon glyphicon-edit"></i></a>
+              <a ng-click="remove(p.id)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <button type="button" class="btn btn-primary pull-right">
+        <span class="glyphicon glyphicon-map-marker"></span>&nbsp;Check-in
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- fucking wrong! -->
+<script>
+  function open() {
+    $('.modal').modal(); 
+  }
+  $('[data-modal-toggle]').on('click', function(e) { 
+    e.preventDefault(); 
+    open();
+  });
+  $('[data-modal-hide]').on('click', function(){
+    $(".modal").modal('hide');
+    $("#company_form").find('[ng-model]').val('');
+  });
+
+
+</script>
