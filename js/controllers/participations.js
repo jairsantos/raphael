@@ -9,6 +9,7 @@ define(['./module'], function (controllers) {
 
     $scope.load = function(){
       ParticipationService.getInvestments($scope.working_company_id);
+      ParticipationService.getInvestitors($scope.working_company_id);
     }
 
     $scope.change_working_company = function(id) {

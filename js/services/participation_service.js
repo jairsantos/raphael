@@ -16,6 +16,14 @@ define(['./module', './base'], function (services) {
       });
     }
 
+    function getInvestitors(base_company_id) {
+      $http.get(api + 'investitors?base_company_id=' + base_company_id)
+      .success(function(data){
+        $rootScope.investitors = data;
+      });
+    }
+
     this.getInvestments = getInvestments;
+    this.getInvestitors = getInvestitors;
   });
 });
