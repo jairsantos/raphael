@@ -7,42 +7,55 @@
       </div> -->
       <div class="modal-body">  
         <div class="bs-component">
-          <form class="form-horizontal" id="company_form">
-            <input type="hidden" ng-model="company.id">
+          <form class="form-horizontal" id="participation_form">
+            <input type="hidden" ng-model="participation.id">
+            <input type="hidden" ng-model="participation.checkpoint_id">
             <fieldset>
               <legend>Dados da participação</legend>
 
               <div class="form-group">
                 <label for="select" class="col-lg-2 control-label">Investidor</label>
                 <div class="col-lg-10">
-                  <select class="form-control" ng-model="company.country_id">
-                    <option value=1>Brasil</option>
-                    <option value=2>EUA</option>
+                  <select class="form-control" ng-model="participation.investitor_id">
+                    <option ng-repeat="c in companies" value="{{ c.id }}">{{ c.trade_name }}</option>
                   </select>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="select" class="col-lg-2 control-label">Investido</label>
+                <label for="select" class="col-lg-2 control-label">Investimento</label>
                 <div class="col-lg-10">
-                  <select class="form-control" ng-model="company.country_id">
-                    <option value=1>Brasil</option>
-                    <option value=2>EUA</option>
+                  <select class="form-control" ng-model="participation.investment_id">
+                    <option ng-repeat="c in companies" value="{{ c.id }}">{{ c.trade_name }}</option>
                   </select>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="select" class="col-lg-2 control-label">Capital Social</label>
+                <label for="select" class="col-lg-2 control-label">Comentarios</label>
                 <div class="col-lg-10">
-                  <input type="text" class="form-control" ng-model="company.capital_stock">
+                    <textarea class="form-control" ng-model="participation.comment"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Total</label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" ng-model="participation.total">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Data base</label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" ng-model="participation.base_date">
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2 pull-right">
                   <input type="reset" class="btn btn-default" data-modal-hide value="Cancelar">
-                  <button type="submit" ng-click="save(company)" data-modal-hide class="btn btn-primary">Salvar</button>
+                  <button type="submit" ng-click="save(participation)" data-modal-hide class="btn btn-primary">Salvar</button>
                 </div>
               </div>
             </fieldset>
@@ -79,7 +92,7 @@
         <fieldset>
           <!-- <legend>Dados da empresa</legend> -->
           <div class="form-group">
-            <label for="select" class="col-lg-2 control-label">Dashboard</label>
+            <label for="select" class="col-lg-2 control-label">Board</label>
             <div class="col-lg-10">
               <select class="form-control" ng-model="working_dashboard_id">
                 <option value="1">Oficial</option>
@@ -196,7 +209,7 @@
   });
   $('[data-modal-hide]').on('click', function(){
     $(".modal").modal('hide');
-    $("#company_form").find('[ng-model]').val('');
+    $("#participation_form").find('[ng-model]').val('');
   });
 
   $('#relation_tab').on('click', 'li', function(e){

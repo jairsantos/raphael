@@ -23,6 +23,23 @@ define(['./module', './base'], function (services) {
       });
     }
 
+    function create(participation) {
+     $http.post(api + 'participations', participation);
+    }
+
+    function reset() {
+      $rootScope.participation = {};
+    }    
+
+    this.save = function(participation) {
+      console.log("teste ......");
+      if (participation.id === undefined) {
+        create(participation);        
+      } else {
+        update(participation)
+      }
+    };
+
     this.getInvestments = getInvestments;
     this.getInvestitors = getInvestitors;
   });
