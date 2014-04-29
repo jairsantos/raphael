@@ -5,11 +5,11 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Modal title</h4>
       </div> -->
-      <div class="modal-body">  
+      <div class="modal-body">
         <div class="bs-component">
           <form class="form-horizontal" id="participation_form">
             <input type="hidden" ng-model="participation.id">
-            <input type="hidden" ng-model="participation.checkpoint_id">
+            <input type="hidden" ng-model="participation.checkpoint_id" value="{{ working_checkpoint_id }}">
             <fieldset>
               <legend>Dados da participação</legend>
 
@@ -84,7 +84,7 @@
     <div class="col-lg-6">
       <label class="label label-info pull-right"><i class="glyphicon glyphicon-tag"></i>&nbsp;#ef3b17</label>
     </div>
-  </div>    
+  </div>
 
   <div class="row">
     <div class="col-lg-6">
@@ -95,10 +95,7 @@
             <label for="select" class="col-lg-2 control-label">Board</label>
             <div class="col-lg-10">
               <select class="form-control" ng-model="working_dashboard_id">
-                <option value="1">Oficial</option>
-                <option value="1">A</option>
-                <option value="2">B</option>
-                <option value="3">C</option>
+                <option ng-repeat="b in boards" value="{{ b.id }}">{{ b.trade_name }}</option>
               </select>
             </div>
           </div>
@@ -119,8 +116,8 @@
   <div class="row">
     <div class="col-lg-12">
       <ul class="nav nav-tabs" id="relation_tab">
-        <li data-target="#investments_grid" class="active"><a href="#">Investimentos</a></li>
-        <li data-target="#investitors_grid"><a href="#">Investidores</a></li>
+        <li data-target="#investments_grid" class="active"><a href="#">Investimentos ({{ investments.length}})</a></li>
+        <li data-target="#investitors_grid"><a href="#">Investidores ({{ investitors.length}})</a></li>
       </ul>
     </div>
   </div>
@@ -156,8 +153,8 @@
             <td class="text-center">{{ investment.level }}</td>
             <td><a ng-click="change_working_company(investment.base_company.id)">{{ investment.base_company.trade_name }}</a> <span class="badge pull-right">{{ investment.relative_participation * 100 | number: 1 }}%</span></td>
             <td class="text-center">
-              <a href="javascript:open();" ng-click="show(p.id)" class="btn btn-default btn-xs" data-modal-toggle><i class="glyphicon glyphicon-edit"></i></a>
-              <a ng-click="remove(p.id)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
+              <a href="javascript:open();" ng-click="show(investment.id)" class="btn btn-default btn-xs" data-modal-toggle><i class="glyphicon glyphicon-edit"></i></a>
+              <a ng-click="remove(investment.id)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
             </td>
           </tr>
         </tbody>
@@ -180,8 +177,8 @@
             <td class="text-center">{{ investitor.level }}</td>
             <td><a ng-click="change_working_company(investitor.base_company.id)">{{ investitor.base_company.trade_name }}</a> <span class="badge pull-right">{{ investitor.relative_participation * 100 | number: 1 }}%</span></td>
             <td class="text-center">
-              <a href="javascript:open();" ng-click="show(p.id)" class="btn btn-default btn-xs" data-modal-toggle><i class="glyphicon glyphicon-edit"></i></a>
-              <a ng-click="remove(p.id)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
+              <a href="javascript:open();" ng-click="show(investitor.id)" class="btn btn-default btn-xs" data-modal-toggle><i class="glyphicon glyphicon-edit"></i></a>
+              <a ng-click="remove(investitor.id)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
             </td>
           </tr>
         </tbody>
@@ -209,7 +206,6 @@
   });
   $('[data-modal-hide]').on('click', function(){
     $(".modal").modal('hide');
-    $("#participation_form").find('[ng-model]').val('');
   });
 
   $('#relation_tab').on('click', 'li', function(e){

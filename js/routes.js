@@ -11,13 +11,18 @@ define(['./app'], function (app) {
             controller: 'CompaniesCtrl'
         });
 
+        $routeProvider.when('/boards', {
+            templateUrl: 'views/board/index.html',
+            controller: 'BoardsCtrl'
+        });
+
         $routeProvider.when('/participations', {
             templateUrl: 'views/participation/index.html',
             controller: 'ParticipationsCtrl'
         });
 
         $routeProvider.when('/dashboards', {
-            templateUrl: 'views/layout.html',
+            templateUrl: 'views/tree.html',
             controller: 'DashboardsCtrl'
         });
 

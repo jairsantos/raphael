@@ -7,5 +7,6 @@
  **/
 define(['./version', 
 	    './company_service',
+	    './board_service',
 	    './participation_service'
 	    ], function () {});
