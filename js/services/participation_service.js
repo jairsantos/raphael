@@ -31,6 +31,11 @@ define(['./module', './base'], function (services) {
       $rootScope.participation = {};
     }
 
+    this.checkpoint = function(id, checkpoint) {
+      console.log(checkpoint);
+      // $http.post(api + 'checkpoint?checkpoint_id=' + id, checkpoint);
+    }
+
     this.save = function(participation) {
       if (participation.id === undefined) {
         create(participation);

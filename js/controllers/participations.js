@@ -13,6 +13,8 @@ define(['./module'], function (controllers) {
 
     $scope.show = ParticipationService.get;
 
+    $scope.checkpoint = {};
+
     $scope.remove = function(id){
       ParticipationService.remove(id);
       $scope.load();
@@ -22,6 +24,10 @@ define(['./module'], function (controllers) {
       ParticipationService.getInvestments($scope.working_company_id, $scope.working_checkpoint_id);
       ParticipationService.getInvestitors($scope.working_company_id, $scope.working_checkpoint_id);
     };
+
+    $scope.checkin = function(checkpoint) {
+      ParticipationService.checkpoint($scope.working_checkpoint_id, checkpoint);
+    }
 
     $scope.change_working_company = function(id) {
       $scope.working_company_id = id;
@@ -34,4 +40,4 @@ define(['./module'], function (controllers) {
       $scope.load();
     };
   });
-});''
+});
