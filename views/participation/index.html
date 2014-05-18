@@ -1,15 +1,11 @@
 <div class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modal title</h4>
-      </div> -->
       <div class="modal-body">
         <div class="bs-component">
           <form class="form-horizontal" id="participation_form">
             <input type="hidden" ng-model="participation.id">
-            <input type="hidden" ng-model="participation.checkpoint_id" value="{{ working_checkpoint_id }}">
+            <input type="hidden" ng-model="participation.checkpoint_id" value="{{ checkpoint.id }}">
             <fieldset>
               <legend>Dados da participação</legend>
 
@@ -62,14 +58,52 @@
           </form>
         </div>
       </div>
-<!--       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="bs-component">
+          <form class="form-horizontal" id="participation_form">
+            <input type="hidden" ng-model="participation.id">
+            <input type="hidden" ng-model="participation.checkpoint_id" value="{{ checkpoint.id }}">
+            <fieldset>
+              <legend>Dados da participação</legend>
+
+              <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Investidor</label>
+                <div class="col-lg-10">
+                  <select class="form-control" ng-model="participation.investitor_id">
+                    <option ng-repeat="c in companies" value="{{ c.id }}">{{ c.trade_name }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Investidor</label>
+                <div class="col-lg-10">
+                  <input type="text" ng-model="checkpoint.hashtag" class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2 pull-right">
+                  <input type="reset" class="btn btn-default" data-modal-hide value="Cancelar">
+                  <button type="submit" class="btn btn-primary" ng-click="checkin(checkpoint);">
+                    <span class="glyphicon glyphicon-map-marker"></span>Confirmar
+                  </button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <div class="page-header">
   <div class="row">
@@ -81,11 +115,40 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-6">
-      <label class="label label-info pull-right"><i class="glyphicon glyphicon-tag"></i>&nbsp;#ef3b17</label>
+    <div class="col-lg-12">
+      <div class="">
+        <!-- <label class="control-label">
+          Checkpoints
+        </label>
+        <select ng-model="working_checkpoint_id" class="form-control">
+          <option ng-repeat="chkp in current_checkpoints" value="{{ chkp.id }}">{{ chkp.hashtag }}</option>
+        </select> -->
+
+        <!-- Extra small button group -->
+        <div class="btn-group">
+          <button class="btn btn-info btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+          <i class="glyphicon glyphicon-tag"></i>
+            &nbsp;Checkpoint atual: <strong>{{ checkpoint.hashtag }}</strong> <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li ng-repeat="chkp in current_checkpoints"><a href="#">{{ chkp.hashtag }}</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-lg-12">
+      &nbsp;
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="alert alert-warning">You're in the current affair.</div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-lg-6">
       <form class="form-horizontal" id="participation_form">
@@ -94,7 +157,7 @@
           <div class="form-group">
             <label for="select" class="col-lg-2 control-label">Board</label>
             <div class="col-lg-10">
-              <select class="form-control" ng-model="working_dashboard_id">
+              <select class="form-control" ng-model="working_dashboard_id" ng-change="load_board();">
                 <option ng-repeat="b in boards" value="{{ b.id }}">{{ b.trade_name }}</option>
               </select>
             </div>
@@ -188,12 +251,10 @@
 
   <div class="row">
     <div class="col-lg-12">
-      <form>
-        <input type="text" ng-model="checkpoint.id" value="5">
-        <button type="button" class="btn btn-primary pull-right" ng-click="checkin(checkpoint);">
-          <span class="glyphicon glyphicon-map-marker"></span>&nbsp;Check-in
-        </button>
-      </form>
+      <button class="btn btn-primary pull-right">
+        <i class="glyphicon glyphicon-map-marker"></i>
+        Check-in
+      </button>
     </div>
   </div>
 </div>

@@ -32,8 +32,22 @@ define(['./module', './base'], function (services) {
     }
 
     this.checkpoint = function(id, checkpoint) {
-      console.log(checkpoint);
-      // $http.post(api + 'checkpoint?checkpoint_id=' + id, checkpoint);
+      $http.post(api + 'checkpoint?checkpoint_id=' + id, { 'checkpoint': checkpoint });
+    }
+
+    this.get_checkpoints = function(participation_id) {
+      $http.get(api + 'checkpoints?id=' + participation_id)
+      .success(function(data){
+        $rootScope.current_checkpoints = data;
+      });
+    }    
+
+    this.pick_checkpoint = function(participation_id) {
+      $http.get(api + 'pick_checkpoint?id=' + participation_id)
+      .success(function(data){
+        $rootScope.working_checkpoint_id = data.id;
+        $rootScope.checkpoint = data;
+      });
     }
 
     this.save = function(participation) {
