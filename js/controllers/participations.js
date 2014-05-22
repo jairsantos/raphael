@@ -5,8 +5,6 @@ define(['./module'], function (controllers) {
 
     $scope.working_dashboard_id = null;
 
-    $scope.working_company_id = null;
-
     $scope.add = ParticipationService.reset;
 
     $scope.show = ParticipationService.get;
@@ -20,7 +18,6 @@ define(['./module'], function (controllers) {
       $scope.working_company_id = null;
       ParticipationService.pick_checkpoint($scope.working_dashboard_id);
       ParticipationService.get_checkpoints($scope.working_dashboard_id);
-      load();
     }
 
     $scope.load = function() {
@@ -29,8 +26,12 @@ define(['./module'], function (controllers) {
     };
 
     $scope.checkin = function(checkpoint) {
-      ParticipationService.checkpoint($scope.working_checkpoint_id, checkpoint);
+      ParticipationService.checkpoint($scope.working_checkpoint_id, $scope.working_dashboard_id, checkpoint);
     }
+
+    $scope.changeCheckpoint = function(id){
+      ParticipationService.changeCheckpoint(id, $scope.working_company_id);
+    };
 
     $scope.change_working_company = function(id) {
       $scope.working_company_id = id;
@@ -42,5 +43,7 @@ define(['./module'], function (controllers) {
       ParticipationService.save(participation);
       $scope.load();
     };
+
+    $scope.newCheckin = ParticipationService.newCheckin;
   });
 });

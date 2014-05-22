@@ -31,19 +31,24 @@ define(['./module', './base'], function (services) {
       $rootScope.participation = {};
     }
 
-    this.checkpoint = function(id, checkpoint) {
-      $http.post(api + 'checkpoint?checkpoint_id=' + id, { 'checkpoint': checkpoint });
+    this.checkpoint = function(id, board_id, checkpoint) {
+      var self = this;
+      $http.post(api + 'checkpoint?checkpoint_id=' + id + '&board_id=' + board_id, { 'checkpoint': checkpoint })
+      .success(function(){
+        self.get_checkpoints(board_id);
+        self.pick_checkpoint(board_id);
+      });
     }
 
     this.get_checkpoints = function(participation_id) {
-      $http.get(api + 'checkpoints?id=' + participation_id)
+      $http.get(api + 'checkpoints?id=' + participation_id + '&q=' + Math.random())
       .success(function(data){
         $rootScope.current_checkpoints = data;
       });
     }    
 
     this.pick_checkpoint = function(participation_id) {
-      $http.get(api + 'pick_checkpoint?id=' + participation_id)
+      $http.get(api + 'pick_checkpoint?id=' + participation_id + '&q=' + Math.random())
       .success(function(data){
         $rootScope.working_checkpoint_id = data.id;
         $rootScope.checkpoint = data;
@@ -63,12 +68,28 @@ define(['./module', './base'], function (services) {
       .success(function(data){
         $rootScope.participation = data;
       });
-    }
+    };
 
     this.remove = function(id) {
       console.log('should remove');
       $http.delete(api + 'participations/' + id);
-    }
+    };
+
+    this.newCheckin = function() {
+      $rootScope.new_checkpoint = {};
+    };
+
+    this.changeCheckpoint = function(id, board_id) {
+      var self = this;
+      $http.get(api + 'get_checkpoint?checkpoint_id=' + id)
+      .success(function(data){
+        $rootScope.working_checkpoint_id = id;
+        $rootScope.checkpoint = data;
+
+        getInvestments(board_id, id);
+        getInvestitors(board_id, id);
+      });
+    };
 
     this.getInvestments = getInvestments;
     this.getInvestitors = getInvestitors;
