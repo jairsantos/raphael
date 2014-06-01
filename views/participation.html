@@ -210,7 +210,7 @@
             <td>
               <a ng-click="change_working_company(investment.base_company.id)">{{ investment.base_company.trade_name }}</a> 
               <span class="pull-right info-participation">
-                R$ {{ investment.total }}
+                {{ investment.relative_value | number: 0 }}
                 <br><hr class="info-participation-divisor">
                 {{ investment.relative_participation * 100 | number: 1 }}%
               </span>
