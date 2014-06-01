@@ -2,9 +2,13 @@ define(['./module'], function (controllers) {
   'use strict';
   controllers.controller('ParticipationsCtrl', function ($scope, CompanyService, ParticipationService, BoardService) {
 
+    (function(){
+      ParticipationService.resetInvestments();
+      ParticipationService.resetInvestitors();
+      ParticipationService.resetCheckpoint();
+    })();
 
     $scope.add = ParticipationService.reset;
-
     $scope.show = ParticipationService.get;
 
     $scope.remove = function(id){
@@ -14,6 +18,8 @@ define(['./module'], function (controllers) {
 
     $scope.load_board = function() {
       $scope.working_company_id = null;
+      ParticipationService.resetInvestments();
+      ParticipationService.resetInvestitors();
       ParticipationService.pick_checkpoint($scope.working_dashboard_id);
       ParticipationService.get_checkpoints($scope.working_dashboard_id);
     }
