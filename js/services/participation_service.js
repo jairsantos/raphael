@@ -5,6 +5,18 @@ define(['./module', './base'], function (services) {
       , api       = 'http://localhost:3000/api/manager/'
       ;
 
+    this.resetInvestments = function() {
+      $rootScope.investments = [];
+    };
+
+    this.resetInvestitors = function() {
+      $rootScope.investitors = [];
+    };
+
+    this.resetCheckpoint = function() {
+      $rootScope.checkpoint = {};
+    };
+
     function getInvestments(base_company_id, checkpoint_id) {
       $http.get(api + 'investments?base_company_id=' + base_company_id + '&checkpoint_id=' + checkpoint_id)
       .success(function(data){
