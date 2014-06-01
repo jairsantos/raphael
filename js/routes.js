@@ -2,22 +2,22 @@ define(['./app'], function (app) {
     'use strict';
     return app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/home', {
-            templateUrl: 'views/home/index.html',
+            templateUrl: 'views/home.html',
             controller: 'HomeCtrl'
         });
 
         $routeProvider.when('/companies', {
-            templateUrl: 'views/company/index.html',
+            templateUrl: 'views/company.html',
             controller: 'CompaniesCtrl'
         });
 
         $routeProvider.when('/boards', {
-            templateUrl: 'views/board/index.html',
+            templateUrl: 'views/board.html',
             controller: 'BoardsCtrl'
         });
 
         $routeProvider.when('/participations', {
-            templateUrl: 'views/participation/index.html',
+            templateUrl: 'views/participation.html',
             controller: 'ParticipationsCtrl'
         });
 
