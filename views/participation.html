@@ -238,7 +238,13 @@
         <tbody>
           <tr ng-animate="'animate'" ng-repeat="investitor in investitors">
             <td class="text-center">{{ investitor.level }}</td>
-            <td><a ng-click="change_working_company(investitor.base_company.id)">{{ investitor.base_company.trade_name }}</a> <span class="badge pull-right">{{ investitor.relative_participation * 100 | number: 1 }}%</span></td>
+            <td>
+              <a ng-click="change_working_company(investitor.base_company.id)">{{ investitor.base_company.trade_name }}</a> 
+              <span class="pull-right info-participation">
+                {{ investitor.relative_value | number: 0 }}
+                <br><hr class="info-participation-divisor">
+                {{ investitor.relative_participation * 100 | number: 1 }}%
+              </span>
             <td class="text-center">
               <a href="javascript:open();" ng-click="show(investitor.id)" class="btn btn-default btn-xs" data-modal-toggle><i class="glyphicon glyphicon-edit"></i></a>
               <a ng-click="remove(investitor.id)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
