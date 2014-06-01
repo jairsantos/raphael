@@ -5,10 +5,6 @@ define(['./module', './base'], function (services) {
       , api       = 'http://localhost:3000/api/manager/'
       ;
 
-    function resetInvestments() {
-      $rootScope.investments = {};
-    }
-
     function getInvestments(base_company_id, checkpoint_id) {
       $http.get(api + 'investments?base_company_id=' + base_company_id + '&checkpoint_id=' + checkpoint_id)
       .success(function(data){
@@ -45,7 +41,7 @@ define(['./module', './base'], function (services) {
       .success(function(data){
         $rootScope.current_checkpoints = data;
       });
-    }    
+    }
 
     this.pick_checkpoint = function(participation_id) {
       $http.get(api + 'pick_checkpoint?id=' + participation_id + '&q=' + Math.random())
