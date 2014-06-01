@@ -207,7 +207,14 @@
         <tbody>
           <tr ng-animate="'animate'" ng-repeat="investment in investments">
             <td class="text-center">{{ investment.level }}</td>
-            <td><a ng-click="change_working_company(investment.base_company.id)">{{ investment.base_company.trade_name }}</a> <span class="badge pull-right">{{ investment.relative_participation * 100 | number: 1 }}%</span></td>
+            <td>
+              <a ng-click="change_working_company(investment.base_company.id)">{{ investment.base_company.trade_name }}</a> 
+              <span class="pull-right info-participation">
+                R$ {{ investment.total }}
+                <br><hr class="info-participation-divisor">
+                {{ investment.relative_participation * 100 | number: 1 }}%
+              </span>
+            </td>
             <td class="text-center">
               <a href="javascript:open();" ng-click="show(investment.id)" class="btn btn-default btn-xs" data-modal-toggle><i class="glyphicon glyphicon-edit"></i></a>
               <a ng-click="remove(investment.id)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
@@ -255,6 +262,16 @@
 <style type="text/css">
   .chkmsg:empty {
     display: none;
+  }
+  .info-participation {
+    display: table-cell;
+    font-size: 0.8em;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .info-participation-divisor {
+    margin: 0 1px;
+    padding: 0;
   }
 </style>
 
