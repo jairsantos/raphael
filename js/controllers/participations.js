@@ -1,9 +1,7 @@
 define(['./module'], function (controllers) {
   'use strict';
   controllers.controller('ParticipationsCtrl', function ($scope, CompanyService, ParticipationService, BoardService) {
-    $scope.title = "Participações";
 
-    $scope.working_dashboard_id = null;
 
     $scope.add = ParticipationService.reset;
 
