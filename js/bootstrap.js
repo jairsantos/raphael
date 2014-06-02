@@ -6,7 +6,8 @@ define([
     'jstree',
     'app',
     // 'nouislider',
-    'routes'
+    'routes',
+    'angular-tree'
 ], function (require, ng) {
     'use strict';
     require(['domReady!'], function (document) {

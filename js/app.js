@@ -13,6 +13,7 @@ define([
         // 'app.directives',
         // 'app.filters',
         'app.services',
-        'ngRoute'
+        'ngRoute',
+        'treeControl'
     ]);
 });
