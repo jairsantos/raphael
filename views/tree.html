@@ -2,80 +2,10 @@
 
 <br><br><br><br><br><br><br>
 
-<!--
-<div id="html1">
-  <ul>
-    <li data-jstree='{"type":"root"}'>Root
-      <ul>
-        <li>
-          <span>Child</span>
-        </li>
-        <li>Child</li>
-        <li>Child
-          <ul>
-            <li>Child</li>
-            <li>Child</li>
-            <li>Child
-              <ul>
-                <li>Child</li>
-                <li>Child</li>
-                <li>Child
-                  <ul>
-                    <li>Child</li>
-                    <li>Child</li>
-                    <li>Child
-                      <ul>
-                        <li>Child</li>
-                        <li>Child</li>
-                        <li>Child
-                          <ul>
-                            <li>Child</li>
-                            <li>Child</li>
-                            <li>Child</li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</div>
--->
-
-<!-- as a Dom element -->
 <treecontrol class="tree-classic"
    tree-model="dataForTheTree"
    options="treeOptions"
    on-selection="showSelected(node)"
    selected-node="node1">
-   employee: {{node.name}} age {{node.age}}
+   {{node.name}}
 </treecontrol>
-<!-- as an attribute -->
-<div treecontrol class="tree-classic"
-   tree-model="dataForTheTree"
-   options="treeOptions"
-   on-selection="showSelected(node)"
-   selected-node="node1">
-   employee: {{node.name}} age {{node.age}}
-</div>
-
-<script type="text/javascript">
-  $('#html1').jstree({
-    "types" : {
-      "default" : {
-        "icon" : "glyphicon glyphicon-leaf"
-      },
-      "root" : {
-        "icon" : "glyphicon glyphicon-ok"
-      }
-    },
-    "plugins" : [ "types", "state" ]
-  });
-</script>
- 
