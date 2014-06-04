@@ -48,6 +48,7 @@
         selected-node="node1">
         <span>
           <strong>{{ node.name }}</strong>
+          <strong class="cycling" ng-show="node.cycling">CIRCULARIDADE</strong>
           <span ng-show="node.relations.participation" class="participation">
             {{ node.relations.participation | number: 0 }} 
           </span>
@@ -61,8 +62,12 @@
 </div>
 
 <style type="text/css">
-  .percent {
+  .cycling {
     color: #f00;
+  }
+
+  .percent {
+    color: #009;
     font-size: 0.6em;
   }
 
