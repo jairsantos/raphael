@@ -5,10 +5,25 @@ define(['./module', './base'], function (services) {
       , api       = 'http://localhost:3000/api/manager/'
       ;
 
-    $http.get(api + 'trees')
-    .success(function(data){
-      $rootScope.dataForTheTree = data;
-    });
+    $rootScope.workingBoardId = undefined;
+
+    $rootScope.workingCheckpointId = undefined;
+
+    $rootScope.dataForTheTree = undefined;
+
+    this.getCheckpoints = function(participation_id) {
+      $http.get(api + 'checkpoints?id=' + participation_id)
+      .success(function(data){
+        $rootScope.checkpoints = data;
+      });
+    };
+
+    this.getTree = function(checkpoint_id) {
+      $http.get(api + 'trees?checkpoint_id=' + checkpoint_id)
+      .success(function(data){
+        $rootScope.dataForTheTree = data;
+      });
+    };
 
   });
 });

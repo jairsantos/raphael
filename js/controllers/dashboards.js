@@ -1,7 +1,11 @@
 define(['./module'], function (controllers) {
   'use strict';
-  controllers.controller('DashboardsCtrl', function ($scope, DashboardService) {
+  controllers.controller('DashboardsCtrl', function ($scope, DashboardService, BoardService) {
     $scope.title = "Dashboards";
+
+    $scope.loadCheckpoints = DashboardService.getCheckpoints;
+
+    $scope.loadTree = DashboardService.getTree;
 
     $scope.treeOptions = {
         nodeChildren: "investments",

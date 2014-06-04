@@ -6,15 +6,68 @@
       <p class="lead"><small>Aqui você pode visualizar todas as suas árvoes por board e por checkpoint.</small></p>
     </div>
   </div>
+
   <div class="row">
     <div class="col-lg-12">
+      <div class="form-group">
+        <label for="select" class="col-lg-2 control-label">Board</label>
+        <div class="col-lg-10">
+          <select class="form-control" ng-model="workingBoardId" ng-change="loadCheckpoints(workingBoardId);">
+            <option ng-repeat="board in boards" value="{{ board.id }}">{{ board.trade_name }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" ng-show="workingBoardId">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <label for="select" class="col-lg-2 control-label">Checkpoint</label>
+        <div class="col-lg-10">
+          <select class="form-control" ng-model="workingCheckpointId" ng-change="loadTree(workingCheckpointId)">
+            <option ng-repeat="checkpoint in checkpoints" value="{{ checkpoint.id }}">{{ checkpoint.hashtag }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" ng-show="workingBoardId">
+    <div class="col-lg-12">
+      &nbsp;
+    </div>
+  </div>
+
+  <div class="row" ng-show="workingCheckpointId">
+    <div class="col-lg-12">
       <treecontrol class="tree-classic"
-         tree-model="dataForTheTree"
-         options="treeOptions"
-         on-selection="showSelected(node)"
-         selected-node="node1">
-         {{node.name}}
+        tree-model="dataForTheTree"
+        options="treeOptions"
+        on-selection="showSelected(node)"
+        selected-node="node1">
+        <span>
+          <strong>{{ node.name }}</strong>
+          <span ng-show="node.relations.participation" class="participation">
+            {{ node.relations.participation | number: 0 }} 
+          </span>
+          <span ng-show="node.relations.participation" class="percent">
+            {{ node.relations.percent | number: 2 }}% 
+          </span>
+        </span>
       </treecontrol>
     </div>
   </div>
 </div>
+
+<style type="text/css">
+  .percent {
+    color: #f00;
+    font-size: 0.6em;
+  }
+
+  .participation {
+    color: #0a0;
+    font-style: italic;
+  }
+</style>
