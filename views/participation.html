@@ -198,10 +198,13 @@
         </thead>
         <tbody>
           <tr ng-animate="'animate'" ng-repeat="investment in investments">
-            <td class="text-center">{{ investment.level }}</td>
+            <td class="text-center">
+              {{ investment.level }}
+              <i class="glyphicon glyphicon-repeat" style="color: #f00" ng-show="investment.cycling"></i>
+            </td>
             <td>
-              <a ng-click="change_working_company(investment.base_company.id)">{{ investment.base_company.trade_name }}</a> 
-              <span class="pull-right info-participation">
+              <a ng-click="change_working_company(investment.base_company.id)">{{ investment.base_company.trade_name }}</a>
+              <span class="pull-right info-participation" ng-hide="investment.cycling">
                 {{ investment.relative_value | number: 0 }}
                 <br><hr class="info-participation-divisor">
                 {{ investment.relative_participation * 100 | number: 1 }}%
@@ -229,10 +232,13 @@
         </thead>
         <tbody>
           <tr ng-animate="'animate'" ng-repeat="investitor in investitors">
-            <td class="text-center">{{ investitor.level }}</td>
+            <td class="text-center">
+              {{ investitor.level }}
+              <i class="glyphicon glyphicon-repeat" style="color: #f00" ng-show="investitor.cycling"></i>
+            </td>
             <td>
               <a ng-click="change_working_company(investitor.base_company.id)">{{ investitor.base_company.trade_name }}</a> 
-              <span class="pull-right info-participation">
+              <span class="pull-right info-participation" ng-hide="investitor.cycling">
                 {{ investitor.relative_value | number: 0 }}
                 <br><hr class="info-participation-divisor">
                 {{ investitor.relative_participation * 100 | number: 1 }}%
